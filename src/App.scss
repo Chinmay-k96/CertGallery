@@ -10,10 +10,10 @@ select:focus {
   outline: none;
 }
 
-img {
+.img-cert {
   animation: zoom 0.5s;
   animation: fadeIn 700ms ease-out backwards;
-  height: 85vh;
+  height: 83vh;
 }
 
 img:hover {
@@ -26,8 +26,13 @@ img:hover {
   cursor: pointer;
 }
 
+#glass, #cross{
+  font-size: 1.8rem;
+}
+
 #download {
   text-align: right;
+  font-size: 1.5rem
 }
 
 .app-dark {
@@ -129,9 +134,10 @@ img:hover {
 
 .cert-gallery {
   width: 70%;
-  padding-top: 5px;
-  margin-right: 10px;
-  margin-left: 5px;
+  padding-top: 0.9rem;
+  margin-bottom: 0.5rem;
+  margin-right: 1rem;
+  margin-left: 0.5rem;
 }
 
 @keyframes fadeIn {
@@ -148,7 +154,7 @@ img:hover {
 
 .header {
   display: flex;
-  padding: 20px;
+  padding: 2rem;
   justify-content: space-between;
 }
 
@@ -159,7 +165,7 @@ img:hover {
 }
 
 .heading {
-  font-size: 28px;
+  font-size: 2.8rem;
   font-family: Snell Roundhand, cursive;
 }
 
@@ -170,8 +176,8 @@ img:hover {
 
 .searchbox {
   display: flex;
-  padding: 10px;
-  border-radius: 4px;
+  padding: 1rem;
+  border-radius: 0.4rem;
 }
 
 input,
@@ -188,37 +194,29 @@ input:focus-visible {
   width: 30%;
   height: 87vh;
   overflow-y: auto;
-  margin-right: 10px;
+  margin-right: 1rem;
 }
 
 .certlist::-webkit-scrollbar {
   display: none;
 }
 
-.cert-heading {
-  padding: 5px 16px;
-  padding-right: 50px;
-  text-align: left;
-  font-size: x-large;
-  font-weight: 500;
-}
-
 .certificate {
   display: flex;
   justify-content: space-between;
-  padding: 22px;
-  padding-right: 30px;
-  font-size: larger;
+  padding: 2.2rem;
+  padding-right: 3rem;
+  font-size: 1.8rem;
   font-family: Georgia, serif;
   cursor: pointer;
 }
 
 .dataResult {
   position: absolute;
-  margin-top: 5px;
+  margin-top: 0.5rem;
   width: 100%;
-  border-radius: 4px;
-  max-height: 200px;
+  border-radius: 0.4rem;
+  max-height: 20rem;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: hidden;
@@ -232,8 +230,9 @@ input:focus-visible {
 .dataResult .dataItem {
   width: 100%;
   text-align: left;
+  font-size: 1.5rem;
   font-family: Georgia, serif;
   cursor: pointer;
-  padding: 15px;
+  padding: 1.5rem;
   color: #294162;
 }
