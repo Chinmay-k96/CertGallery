@@ -1,11 +1,26 @@
-import React from 'react'
-import reactCert from '../certificates/React-Basic-Hackerrank.JPG'
+import React, {useState, useEffect } from 'react'
+import {useSelector} from 'react-redux'
 
+const CertGallery = () => {
 
-const CertGallery = ({certImg}) => {
+  const [load, setLoad] = useState(false);
+
+  const { certImg } = useSelector(state => state)
+  console.log(certImg)
+
+  useEffect(() => {
+    setLoad(true);
+    setTimeout(() => {
+    setLoad(false);
+    }, 0.5);
+
+  }, [certImg]);
+
+  if (load) return <></>;
+
   return (
     <div className='cert-gallery'>
-      <img src={certImg} alt="ceritificate"></img>
+      <img src={`./certificates/${certImg}`} alt="ceritificate"></img>
     </div>
   )
 }
