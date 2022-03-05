@@ -75,6 +75,10 @@ img:hover {
     background-image: linear-gradient(180deg, #294162 0%, #3362a2 74%);
     color: #f2f2f2;
   }
+
+  ::-webkit-scrollbar-thumb {
+    background: #f2f2f2; 
+  }
 }
 
 .app-light {
@@ -126,6 +130,18 @@ img:hover {
     background-color: #fff;
     background-image: linear-gradient(180deg, #cee9ee 0%, #edf7fa 74%);
   }
+
+  ::-webkit-scrollbar-thumb {
+    background: #122d55; 
+  }
+}
+
+.dataResult::-webkit-scrollbar-thumb {
+  background: #3362a2;
+}
+
+.dataResult::-webkit-scrollbar {
+  width: 4px;
 }
 
 .certwrap {
@@ -136,7 +152,6 @@ img:hover {
   width: 70%;
   padding-top: 0.9rem;
   margin-bottom: 0.5rem;
-  margin-right: 1rem;
   margin-left: 0.5rem;
 }
 
@@ -194,11 +209,7 @@ input:focus-visible {
   width: 30%;
   height: 87vh;
   overflow-y: auto;
-  margin-right: 1rem;
-}
-
-.certlist::-webkit-scrollbar {
-  display: none;
+  margin-left: 0.5rem;
 }
 
 .certificate {
@@ -207,6 +218,7 @@ input:focus-visible {
   padding: 2.2rem;
   padding-right: 3rem;
   font-size: 1.8rem;
+  margin-right: 0.5rem;
   font-family: Georgia, serif;
   cursor: pointer;
 }
@@ -223,10 +235,6 @@ input:focus-visible {
   overflow-y: auto;
 }
 
-.dataResult::-webkit-scrollbar {
-  display: none;
-}
-
 .dataResult .dataItem {
   width: 100%;
   text-align: left;
@@ -236,3 +244,9 @@ input:focus-visible {
   padding: 1.5rem;
   color: #294162;
 }
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+ 
+/* Handle */

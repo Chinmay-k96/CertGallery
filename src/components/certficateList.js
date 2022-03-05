@@ -4,8 +4,12 @@ export const certArray = [
     path: `React-Basic-Hackerrank.JPG`,
   },
   {
-    name: "NodeJS Basic Hacerrank",
+    name: "NodeJS Basic HackerRank",
     path: `NodeJs-Hackerrank.jpg`,
+  },
+  {
+    name: "Javascript Basic HackerRank",
+    path: `Javascript-Hackerrank.jpg`,
   },
   {
     name: "Advanced Javascript Concepts",
@@ -16,15 +20,20 @@ export const certArray = [
     path: `Advanced-css.jpg`,
   },
   {
-    name: "Complete web developer",
+    name: "Complete Web Developer",
     path: `Complete-web-developer.jpg`,
   },
   {
-    name: "Complete React developer",
+    name: "Complete React Developer",
     path: `Complete-React-developer.jpg`,
   },
   {
-    name: "Web design for Beginners",
+    name: "Web Design for Beginners",
     path: `Web-design.jpg`,
   },
+  {
+    name: "Complete NodeJS Developer",
+    path: `Complete-NodeJS-developer.jpg`,
+  },
+  
 ];
