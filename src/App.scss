@@ -10,9 +10,14 @@ select:focus {
   outline: none;
 }
 
+.cert-icon{
+  margin-right: 12px;
+}
+
 .img-cert {
   animation: zoom 0.5s;
   animation: fadeIn 700ms ease-out backwards;
+  width: 75.5%;
   height: 83vh;
 }
 
@@ -28,6 +33,10 @@ img:hover {
 
 #glass, #cross{
   font-size: 1.8rem;
+}
+
+.download-icon{
+  margin-left: auto;
 }
 
 #download {
@@ -49,7 +58,7 @@ img:hover {
     color: #f2f2f2;
   }
 
-  img {
+  .img-cert{
     box-shadow: 0px 0px 20px 0px rgb(24 54 100 / 65%);
   }
 
@@ -99,7 +108,7 @@ img:hover {
     color: #f2f2f2;
   }
 
-  img {
+  .img-cert {
     box-shadow: 0px 0px 20px 0px rgb(242 242 242 / 65%);
   }
 
@@ -149,7 +158,7 @@ img:hover {
 }
 
 .cert-gallery {
-  width: 70%;
+  width: 66vw;
   padding-top: 0.9rem;
   margin-bottom: 0.5rem;
   margin-left: 0.5rem;
@@ -157,12 +166,12 @@ img:hover {
 
 @keyframes fadeIn {
   from {
-    transform: translateX(-200px);
+    transform: scale(0.1);
     opacity: 0;
   }
 
   to {
-    transform: translateX(0px);
+    transform: scale(1);
     opacity: 1;
   }
 }
@@ -176,7 +185,7 @@ img:hover {
 .head-right {
   display: flex;
   justify-content: space-between;
-  width: 69.5%;
+  width: 70.3%;
 }
 
 .heading {
@@ -206,7 +215,7 @@ input:focus-visible {
 .certlist {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 34vw;
   height: 87vh;
   overflow-y: auto;
   margin-left: 0.5rem;
@@ -214,7 +223,7 @@ input:focus-visible {
 
 .certificate {
   display: flex;
-  justify-content: space-between;
+  text-align: left;
   padding: 2.2rem;
   padding-right: 3rem;
   font-size: 1.8rem;

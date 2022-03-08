@@ -20,7 +20,7 @@ const CertGallery = () => {
 
   return (
     <div className='cert-gallery'>
-      <img src={`./certificates/${certImg}`} alt="ceritificate" className='img-cert'></img>
+      <img src={`certificates/${certImg}`} alt="ceritificate" className='img-cert'></img>
     </div>
   )
 }

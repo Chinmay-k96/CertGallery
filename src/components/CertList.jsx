@@ -4,8 +4,7 @@ import { certArray } from "./certficateList";
 import { setCertImg } from "./stateReducer";
 
 const CertList = () => {
-
-  const { certImg, filteredCerts } = useSelector(state => state)
+  const { certImg, filteredCerts } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   return (
@@ -17,8 +16,21 @@ const CertList = () => {
             className="certificate"
             onClick={() => dispatch(setCertImg(c.path))}
           >
+            <img
+              className="cert-icon"
+              src={c.icon}
+              alt="icon"
+              width="20"
+              height="20"
+            ></img>
             {c.name}
-            <a href={`./certificates/${certImg}`} download={certImg}><i title="Download Certificate" id="download" className="fa-solid fa-download"></i></a>
+            <a href={`certificates/${certImg}`} download={certImg} className="download-icon">
+              <i
+                title="Download Certificate"
+                id="download"
+                className="fa-solid fa-download"
+              ></i>
+            </a>
           </div>
         );
       })}
