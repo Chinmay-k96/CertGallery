@@ -1,21 +1,21 @@
 export const certArray = [
   {
-    name: "React Basic Assesment",
+    name: "React Basic Assessment",
     path: `React-Basic-Hackerrank.JPG`,
     icon: "https://hrcdn.net/community-frontend/assets/favicon-ddc852f75a.png",
   },
   {
-    name: "NodeJS Basic Assesment",
+    name: "NodeJS Basic Assessment",
     path: `NodeJs-Hackerrank.jpg`,
     icon: "https://hrcdn.net/community-frontend/assets/favicon-ddc852f75a.png",
   },
   {
-    name: "Javascript Basic Assesment",
+    name: "Javascript Basic Assessment",
     path: `Javascript-Hackerrank.jpg`,
     icon: "https://hrcdn.net/community-frontend/assets/favicon-ddc852f75a.png",
   },
   {
-    name: "Javascript Intermediate Assesment",
+    name: "Javascript Intermediate Assessment",
     path: `Javascript-level2-Hackerrank.jpg`,
     icon: "https://hrcdn.net/community-frontend/assets/favicon-ddc852f75a.png",
   },
@@ -25,7 +25,7 @@ export const certArray = [
     icon:'udemy.svg'
   },
   {
-    name: "Advanced CSS/Sass",
+    name: "Advanced CSS and Sass",
     path: `Advanced-css.jpg`,
     icon:'udemy.svg'
   },
