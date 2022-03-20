@@ -9,11 +9,10 @@ const Header = () => {
 
   return (
     <div className="header">
+      <div className="heading">Welcome to Cert Gallery</div>
       <div className="head-right">
-        <div className="heading">Welcome to Cert Gallery</div>
         <SearchBox/>
-      </div>
-      <div title="Theme">
+        <div title="Theme">
         <label className="switch">
           <input
             type="checkbox"
@@ -26,6 +25,7 @@ const Header = () => {
           />
           <span className="slider round"></span>
         </label>
+      </div>
       </div>
     </div>
   );
