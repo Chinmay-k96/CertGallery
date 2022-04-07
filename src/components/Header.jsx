@@ -8,7 +8,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="header">
+    <header className="header">
       <div className="heading">Welcome to Cert Gallery</div>
       <div className="head-right">
         <SearchBox/>
@@ -27,7 +27,7 @@ const Header = () => {
         </label>
       </div>
       </div>
-    </div>
+    </header>
   );
 };
 

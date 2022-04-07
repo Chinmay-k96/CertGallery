@@ -13,13 +13,14 @@ function App() {
   
   return (
     
-    <div className={`app-${theme ? 'dark' : 'light'}`}>
+    <main className={`app-${theme ? 'dark' : 'light'}`}>
       <Header/>
+      {!navigator.onLine && <div className="warn">You are offine please check your internet connection..!!</div> }
       <div className="certwrap">
         <CertGallery />
         <CertList/>
       </div>
-    </div>
+    </main>
   );
 }
 

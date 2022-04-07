@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { certArray } from "./certficateList";
 import { setCertImg } from "./stateReducer";
 
 const CertList = () => {
@@ -8,7 +7,7 @@ const CertList = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="certlist">
+    <section className="certlist">
       {filteredCerts.map((c, i) => {
         return (
           <div
@@ -34,7 +33,7 @@ const CertList = () => {
           </div>
         );
       })}
-    </div>
+    </section>
   );
 };
 

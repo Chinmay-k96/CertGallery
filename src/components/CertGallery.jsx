@@ -6,7 +6,7 @@ const CertGallery = () => {
   const [load, setLoad] = useState(false);
 
   const { certImg } = useSelector(state => state)
-  console.log(certImg)
+  //console.log(certImg)
 
   useEffect(() => {
     setLoad(true);
@@ -19,9 +19,9 @@ const CertGallery = () => {
   if (load) return <></>;
 
   return (
-    <div className='cert-gallery'>
-      <img src={`certificates/${certImg}`} alt="ceritificate" className='img-cert'></img>
-    </div>
+    <section className='cert-gallery'>
+      <img src={`certificates/${certImg}`} alt={`${certImg}`} className='img-cert'></img>
+    </section>
   )
 }
 
