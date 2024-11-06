@@ -1,23 +1,33 @@
 export const certArray = [
   {
+    name: "People's Choice Award",
+    path: `peoples-choice.JPEG`,
+    icon: "pwcLogo.svg",
+  },
+  {
+    name: "Above & Beyond Award",
+    path: `Above-and-beyond.JPEG`,
+    icon: "pwcLogo.svg",
+  },
+  {
     name: "React Basic Assessment",
     path: `React-Basic-Hackerrank.JPG`,
-    icon: "https://hrcdn.net/community-frontend/assets/favicon-ddc852f75a.png",
+    icon: "HackerRankLogo.svg",
   },
   {
     name: "NodeJS Basic Assessment",
     path: `NodeJs-Hackerrank.jpg`,
-    icon: "https://hrcdn.net/community-frontend/assets/favicon-ddc852f75a.png",
+    icon: "HackerRankLogo.svg",
   },
   {
     name: "Javascript Basic Assessment",
     path: `Javascript-Hackerrank.jpg`,
-    icon: "https://hrcdn.net/community-frontend/assets/favicon-ddc852f75a.png",
+    icon: "HackerRankLogo.svg",
   },
   {
     name: "Javascript Intermediate Assessment",
     path: `Javascript-level2-Hackerrank.jpg`,
-    icon: "https://hrcdn.net/community-frontend/assets/favicon-ddc852f75a.png",
+    icon: "HackerRankLogo.svg",
   },
   {
     name: "Advanced Javascript Concepts",
