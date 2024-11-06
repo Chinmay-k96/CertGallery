@@ -71,7 +71,8 @@ img:hover {
     border-top: 1px solid #c4bbbb;
   }
 
-  .certificate:hover {
+  .certificate:hover,
+  .certificate.active {
     background-color: #183664;
   }
 
@@ -127,7 +128,8 @@ img:hover {
     border-top: 1px solid #183664;
   }
 
-  .certificate:hover {
+  .certificate:hover,
+  .certificate.active {
     background-color: #c6e4e9;
   }
 

@@ -21,7 +21,7 @@ export const setFilteredCerts = (data) =>({
 
 const initialState = {
     theme : true,
-    certImg: "React-Basic-Hackerrank.JPG",
+    certImg: "peoples-choice.JPG",
     filteredCerts: certArray,
 }
 

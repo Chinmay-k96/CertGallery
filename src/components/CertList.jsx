@@ -12,8 +12,10 @@ const CertList = () => {
         return (
           <div
             key={i}
-            className="certificate"
-            onClick={() => dispatch(setCertImg(c.path))}
+            className={`certificate ${certImg === c?.path ? "active" : ""}`}
+            onClick={() => {
+              dispatch(setCertImg(c.path));
+            }}
           >
             <img
               className="cert-icon"
@@ -23,7 +25,11 @@ const CertList = () => {
               height="20"
             ></img>
             {c.name}
-            <a href={`certificates/${certImg}`} download={certImg} className="download-icon">
+            <a
+              href={`certificates/${certImg}`}
+              download={certImg}
+              className="download-icon"
+            >
               <i
                 title="Download Certificate"
                 id="download"

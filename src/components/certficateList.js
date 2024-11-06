@@ -1,12 +1,12 @@
 export const certArray = [
   {
     name: "People's Choice Award",
-    path: `peoples-choice.JPEG`,
+    path: `peoples-choice.JPG`,
     icon: "pwcLogo.svg",
   },
   {
     name: "Above & Beyond Award",
-    path: `Above-and-beyond.JPEG`,
+    path: `Above-and-beyond.JPG`,
     icon: "pwcLogo.svg",
   },
   {
