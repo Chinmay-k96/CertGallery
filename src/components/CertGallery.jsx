@@ -20,7 +20,7 @@ const CertGallery = () => {
 
   return (
     <section className='cert-gallery'>
-      <img src={`certificates/${certImg}`} alt={`${certImg}`} className='img-cert'></img>
+      <img src={`/certificates/${certImg}`} alt={`${certImg}`} className='img-cert'></img>
     </section>
   )
 }
