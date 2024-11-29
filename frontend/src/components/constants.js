@@ -61,3 +61,7 @@ export const certArray = [
   },
   
 ];
+
+export const THEME_DARK = "night"
+export const THEME_LIGHT = "nord"
+export const THEME_ALTERNATE = "nord"

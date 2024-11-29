@@ -1,4 +1,4 @@
-import { certArray } from "./certficateList"
+import { certArray } from "./constants"
 
 export const SET_THEME = 'SET_THEME'
 export const SET_CERT_IMG = 'SET_CERT_IMG'
