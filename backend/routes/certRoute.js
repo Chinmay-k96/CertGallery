@@ -1,6 +1,6 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import { authenticate } from "../middlewares/authMiddleware.js";
+import { authenticate, verfiyToken } from "../middlewares/authMiddleware.js";
 const router = express.Router();
 import Certificate from "../models/certModel.js";
 
@@ -9,11 +9,13 @@ router.get(
   "/",
   expressAsyncHandler(async (req, res) => {
     try {
+      let { usertoken } = req.cookies;
+      const isLoggedIn = verfiyToken(usertoken);
       const certificates = await Certificate.find({});
-      res.json(certificates);
+      res.json({ isLoggedIn: isLoggedIn, data: certificates });
     } catch (error) {
       res.status(500);
-      throw new Error("Somthing went wrong" + error);
+      throw new Error("Somthing went wrong - " + error);
     }
   })
 );

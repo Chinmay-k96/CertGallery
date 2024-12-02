@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCertImg } from "./stateReducer";
+import { setCertImg } from "../shared/stateReducer";
 
 const CertList = () => {
   const { certImg, filteredCerts } = useSelector((state) => state);
@@ -10,10 +10,10 @@ const CertList = () => {
     <section className="certlist">
       {filteredCerts.map((c, i) => {
         return (
-          <>
-            <div className="divider m-0"></div>
+          <Fragment>
+            <div key={i} className="divider m-0"></div>
             <div
-              key={i}
+              key={c?.path}
               className={`certificate hover:bg-base-200 ${certImg === c?.path ? "bg-base-200" : ""}`}
               onClick={() => {
                 dispatch(setCertImg(c.path));
@@ -39,7 +39,7 @@ const CertList = () => {
                 ></i>
               </a>
             </div>
-          </>
+          </Fragment>
         );
       })}
     </section>

@@ -1,6 +1,5 @@
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import { useRef } from "react";
+import CustomModal from "../shared/CustomModal";
 
 const LoginModal = ({ show, setShow, handleLogin }) => {
   const pinRef = useRef();
@@ -14,35 +13,40 @@ const LoginModal = ({ show, setShow, handleLogin }) => {
     pinRef.current = pin;
   };
 
+  const modalBody = () => (
+    <>
+      <div className="mb-6 text-[1.3rem]">
+        Enter your MPIN
+      </div>
+      <label className="input input-bordered flex items-center gap-2 h-[4rem]">
+        <input
+          type="text"
+          className="grow text-xl/8 text-[1.5rem]"
+          onChange={handlePinChange}
+          placeholder="Enter MPIN"
+          required
+        />
+      </label>
+    </>
+  );
+
+  const modalFooter = () => (
+    <>
+      <button className="btn btn-primary text-[1.3rem] mt-6" onClick={() => handleLogin(pinRef.current)}>
+        Login
+      </button>
+    </>
+  );
+
   return (
-    <div
-      className="modal show"
-      style={{ display: "block", position: "initial" }}
-    >
-      <Modal show={show} onHide={closeModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <label for="mpin">Enter your MPIN</label>
-          <input
-            type="text"
-            className="mpin"
-            name="mpin"
-            onChange={handlePinChange}
-            placeholder="Enter MPIN"
-            required
-          />
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="primary" onClick={()=>handleLogin(pinRef)}>
-            Login
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
+    <CustomModal
+      modalTitle={"Login"}
+      modalBody={modalBody}
+      modalFooter={modalFooter}
+      show={show}
+      closeModal={closeModal}
+      width={'45rem'}
+    />
   );
 };
 

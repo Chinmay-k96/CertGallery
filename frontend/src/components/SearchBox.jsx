@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { certArray, THEME_ALTERNATE } from "./constants";
-import { setCertImg, setFilteredCerts } from "./stateReducer";
+import { certArray, THEME_ALTERNATE } from "../shared/constants";
+import { setCertImg, setFilteredCerts } from "../shared/stateReducer";
 
 const SearchBox = () => {
   const [inputValue, setInputValue] = useState("");

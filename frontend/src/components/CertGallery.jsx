@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react'
 import {useSelector} from 'react-redux'
-import { THEME_DARK, THEME_LIGHT } from './constants';
+import { THEME_DARK, THEME_LIGHT } from '../shared/constants';
 
 const CertGallery = () => {
 

@@ -7,6 +7,7 @@ import connectDB from "./config/db.js";
 import certRoute from "./routes/certRoute.js";
 import userRoute from "./routes/userRoute.js";
 import uploadRoute from "./routes/uploadRoute.js";
+import cookieParser from "cookie-parser";
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 
 dotenv.config();
@@ -15,8 +16,14 @@ connectDB()
   .then(() => {
     const app = express();
 
-    app.use(cors());
+    app.use(
+      cors({
+        origin: "http://localhost:3000/",
+        credentials: true,
+      })
+    );
     app.use(bodyParser.json());
+    app.use(cookieParser());
 
     app.use(express.json());
 

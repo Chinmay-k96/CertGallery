@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import SearchBox from "./SearchBox";
-import { setTheme } from "./stateReducer";
-//import UploadModal from "./uploadModal";
-//import LoginModal from "./loginModal";
+import UploadModal from "./uploadModal";
+import LoginModal from "./loginModal";
 import axios from "axios";
-import { THEME_ALTERNATE } from "./constants";
+import { THEME_ALTERNATE } from "../shared/constants";
 
-const Header = ({ setReloading }) => {
+const Header = ({ setReloading, isLoggedIn, setIsLoggedIn }) => {
   const [themeToggle, setThemeToggle] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLogginModal, setShowLogginModal] = useState(false);
   const [showUploadModal, setShowUploadModal] = useState(false);
   const dispatch = useDispatch();
@@ -18,8 +16,7 @@ const Header = ({ setReloading }) => {
     try {
       await axios.post(
         "/api/user/login",
-        { mpin: pin },
-        { withCredentials: true }
+        { mpin: pin }
       );
       setIsLoggedIn(true);
     } catch (error) {
@@ -43,11 +40,9 @@ const Header = ({ setReloading }) => {
 
   return (
     <>
-      <div className="navbar bg-base-100">
-        <div className="flex-1">
-          <a className="heading">Welcome to Cert Gallery</a>
-        </div>
-        <div className="flex justify-end pr-4">
+      <div className="navbar bg-base-100 header flex justify-between">
+        <div className="heading  w-full">Welcome to Cert Gallery</div>
+        <div className="flex justify-end pl-4 mr-3 right-nav">
           <SearchBox />
           <div className="dropdown dropdown-end w-[4.5rem] h-[4.5rem] mr-4">
             <div
@@ -67,13 +62,33 @@ const Header = ({ setReloading }) => {
               className="menu menu-sm dropdown-content bg-base-200 rounded-box z-[1] mt-3 w-52 p-1 shadow"
               data-theme={THEME_ALTERNATE}
             >
-              <li className="text-[1.4rem] p-6 hover:bg-base-100 cursor-pointer disabled" title="Login to add certificate" onClick={() => setShowUploadModal(true)}>Add Certificate</li>
-              <li className="text-[1.4rem] p-6 hover:bg-base-100 cursor-pointer" onClick={() => setShowLogginModal(true)}>{isLoggedIn ? 'Logout' : 'Login'}</li>
+              <li
+                className={`text-[1.4rem] p-6 hover:bg-base-100 cursor-pointer ${
+                  isLoggedIn ? "" : "disabled"
+                }`}
+                title="Login to add certificate"
+                onClick={() => setShowUploadModal(true)}
+              >
+                Add Certificate
+              </li>
+              <li
+                className="text-[1.4rem] p-6 hover:bg-base-100 cursor-pointer"
+                onClick={() => {
+                  if(isLoggedIn){
+
+                  }else{
+
+                    setShowLogginModal(true)
+                  }
+                }}
+              >
+                {isLoggedIn ? "Logout" : "Login"}
+              </li>
             </ul>
           </div>
         </div>
       </div>
-      {/* <UploadModal
+      <UploadModal
         show={showUploadModal}
         setShow={setShowUploadModal}
         handleSubmit={handleUpload}
@@ -82,7 +97,7 @@ const Header = ({ setReloading }) => {
         show={showLogginModal}
         setShow={setShowLogginModal}
         handleLogin={handleLogin}
-      /> */}
+      />
     </>
   );
 };
