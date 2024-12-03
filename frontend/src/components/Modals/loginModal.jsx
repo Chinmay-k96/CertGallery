@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import CustomModal from "../shared/CustomModal";
+import CustomModal from "../../shared/CustomModal";
 
 const LoginModal = ({ show, setShow, handleLogin }) => {
   const pinRef = useRef();
@@ -15,9 +15,7 @@ const LoginModal = ({ show, setShow, handleLogin }) => {
 
   const modalBody = () => (
     <>
-      <div className="mb-6 text-[1.3rem]">
-        Enter your MPIN
-      </div>
+      <div className="mb-6 text-[1.3rem]">Enter your MPIN</div>
       <label className="input input-bordered flex items-center gap-2 h-[4rem]">
         <input
           type="text"
@@ -32,11 +30,20 @@ const LoginModal = ({ show, setShow, handleLogin }) => {
 
   const modalFooter = () => (
     <>
-      <button className="btn btn-primary text-[1.3rem] mt-6" onClick={() => handleLogin(pinRef.current)}>
+      <button
+        type="submit"
+        className="btn btn-primary text-[1.3rem] mt-6"
+        //onClick={() => handleLogin(pinRef.current)}
+      >
         Login
       </button>
     </>
   );
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleLogin(pinRef.current);
+  };
 
   return (
     <CustomModal
@@ -45,7 +52,8 @@ const LoginModal = ({ show, setShow, handleLogin }) => {
       modalFooter={modalFooter}
       show={show}
       closeModal={closeModal}
-      width={'45rem'}
+      handleSubmit={handleSubmit}
+      width={"45rem"}
     />
   );
 };

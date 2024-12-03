@@ -1,16 +1,18 @@
 import React, { useCallback, useState, useMemo } from "react";
-import { useDispatch } from "react-redux";
-import { certArray, THEME_ALTERNATE } from "../shared/constants";
-import { setCertImg, setFilteredCerts } from "../shared/stateReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { THEME_ALTERNATE } from "../shared/constants";
+import { setCertObject } from "../shared/stateReducer";
 
 const SearchBox = () => {
   const [inputValue, setInputValue] = useState("");
   const [wordEntered, setWordEntered] = useState("");
 
+  const { filteredCerts } = useSelector((state) => state);
+
   const filteredData = useMemo(() => {
     return wordEntered
-      ? certArray.filter((value) => {
-          return value.name.toLowerCase().includes(wordEntered.toLowerCase());
+      ? filteredCerts.filter((value) => {
+          return value?.filename?.toLowerCase().includes(wordEntered.toLowerCase());
         })
       : [];
   }, [wordEntered]);
@@ -41,7 +43,7 @@ const SearchBox = () => {
   };
 
   const handleSearchClick = (value) => {
-    dispatch(setCertImg(value.path));
+    dispatch(setCertObject(value));
     setWordEntered("");
     setInputValue("");
   };
@@ -81,11 +83,11 @@ const SearchBox = () => {
           {filteredData.slice(0, 15).map((value, key) => {
             return (
               <div
-                key={key}
+                key={value?.filename}
                 className="dataItem hover:bg-base-300"
                 onClick={() => handleSearchClick(value)}
               >
-                {value.name}
+                {value.filename}
               </div>
             );
           })}

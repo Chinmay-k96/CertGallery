@@ -12,9 +12,9 @@ export const verfiyToken = (token) => {
 export const authenticate = (req, res, next) => {
   let { usertoken } = req.cookies;
 
-  if (token) {
+  if (usertoken) {
     try {
-      if (!verfiyToken(token)) {
+      if (!verfiyToken(usertoken)) {
         throw new Error("Invalid Token");
       }
       next();

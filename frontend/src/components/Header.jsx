@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import SearchBox from "./SearchBox";
-import UploadModal from "./uploadModal";
-import LoginModal from "./loginModal";
+import UploadModal from "./Modals/uploadModal";
+import LoginModal from "./Modals/loginModal";
 import axios from "axios";
-import { THEME_ALTERNATE } from "../shared/constants";
+import { THEME_ALTERNATE, THEME_DARK } from "../shared/constants";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+function deleteCookie(name) {
+  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
 
 const Header = ({ setReloading, isLoggedIn, setIsLoggedIn }) => {
   const [themeToggle, setThemeToggle] = useState(true);
@@ -14,18 +20,19 @@ const Header = ({ setReloading, isLoggedIn, setIsLoggedIn }) => {
 
   const handleLogin = async (pin) => {
     try {
-      await axios.post(
-        "/api/user/login",
-        { mpin: pin }
-      );
+      await axios.post("/api/user/login", { mpin: pin });
       setIsLoggedIn(true);
+      setShowLogginModal(false);
+      toast("Login Successfull");
     } catch (error) {
       console.error("Unable to login - ", error);
       setIsLoggedIn(false);
+      toast.error("Unable to login");
+      setShowLogginModal(false);
     }
   };
 
-  const handleUpload = async ({ name, content }) => {
+  const handleUpload = async (name, content) => {
     try {
       await axios.post(
         "/api/upload",
@@ -33,8 +40,22 @@ const Header = ({ setReloading, isLoggedIn, setIsLoggedIn }) => {
         { withCredentials: true }
       );
       setReloading(true);
+      setShowUploadModal(false);
+      toast("Upload Successfull");
     } catch (error) {
-      console.error("Unable to login - ", error);
+      console.error("Unable to Upload - ", error);
+      toast.error("Unable to upload certificate");
+      setShowUploadModal(false);
+    }
+  };
+
+  const onLoginOut = () => {
+    if (isLoggedIn) {
+      deleteCookie("usertoken");
+      setIsLoggedIn(false);
+      toast("You have been logged out successfully");
+    } else {
+      setShowLogginModal(true);
     }
   };
 
@@ -73,14 +94,7 @@ const Header = ({ setReloading, isLoggedIn, setIsLoggedIn }) => {
               </li>
               <li
                 className="text-[1.4rem] p-6 hover:bg-base-100 cursor-pointer"
-                onClick={() => {
-                  if(isLoggedIn){
-
-                  }else{
-
-                    setShowLogginModal(true)
-                  }
-                }}
+                onClick={onLoginOut}
               >
                 {isLoggedIn ? "Logout" : "Login"}
               </li>

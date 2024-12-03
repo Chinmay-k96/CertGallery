@@ -14,47 +14,52 @@ dotenv.config();
 
 connectDB()
   .then(() => {
-    const app = express();
+    try {
+      const app = express();
 
-    app.use(
-      cors({
-        origin: "http://localhost:3000/",
-        credentials: true,
-      })
-    );
-    app.use(bodyParser.json());
-    app.use(cookieParser());
+      app.use(
+        cors({
+          origin: "http://localhost:3000/",
+          credentials: true,
+        })
+      );
+      app.use(bodyParser.json({ limit: "50mb" }));
+      app.use(cookieParser());
 
-    app.use(express.json());
+      app.use(express.json({ limit: "50mb" }));
+      app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
-    app.use("/api/certificates", certRoute);
-    app.use("/api/upload", uploadRoute);
-    app.use("/api/user", userRoute);
+      app.use("/api/certificates", certRoute);
+      app.use("/api/upload", uploadRoute);
+      app.use("/api/user", userRoute);
 
-    const __dirname = path.resolve();
-    app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+      const __dirname = path.resolve();
+      app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
-    // if (process.env.NODE_ENV === "production") {
-    //   app.use(express.static("frontend/build"));
+      if (process.env.NODE_ENV === "production") {
+        app.use(express.static("frontend/build"));
 
-    //   app.get("*", (req, res) => {
-    //     res.sendFile(
-    //       path.resolve(__dirname, "frontend", "build", "index.html")
-    //     );
-    //   });
-    // }
+        app.get("*", (req, res) => {
+          res.sendFile(
+            path.resolve(__dirname, "frontend", "build", "index.html")
+          );
+        });
+      }
 
-    app.use(notFound);
-    app.use(errorHandler);
+      app.use(notFound);
+      app.use(errorHandler);
 
-    const PORT = process.env.PORT || 5000;
+      const PORT = process.env.PORT || 5000;
 
-    app.listen(
-      PORT,
-      console.log(
-        `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
-      )
-    );
+      app.listen(
+        PORT,
+        console.log(
+          `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
+        )
+      );
+    } catch (error) {
+      console.error(error)
+    }
   })
   .catch((error) => {
     console.error("Error : ", error.message);

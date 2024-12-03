@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import CustomModal from "../shared/CustomModal";
+import CustomModal from "../../shared/CustomModal";
 
 const UploadModal = ({ show, setShow, handleSubmit }) => {
   const nameRef = useRef();
@@ -39,35 +39,44 @@ const UploadModal = ({ show, setShow, handleSubmit }) => {
   const modalBody = () => (
     <>
       <div className="mb-6 text-[1.3rem]">Enter Certificate Name</div>
-      <label className="input input-bordered flex items-center gap-2 h-[4rem]">
+      <label className="input input-bordered flex items-center gap-2 h-[3.5rem]">
         <input
           type="text"
           className="grow text-xl/8 text-[1.5rem]"
           onChange={handleNameChange}
-          placeholder="Enter MPIN"
+          placeholder="Enter certificate name"
           required
         />
       </label>
       <div className="mb-6 mt-12 text-[1.3rem]">Select Certificate</div>
-      <input
-        type="file"
-        className="file-input file-input-bordered w-full max-w-xs"
-        accept="image/*"
-        onChange={handleFileSelect}
-      />
+      <label className="input input-bordered flex items-center p-0 cursor-pointer h-[3.5rem]">
+        <input
+          type="file"
+          className="file-input file-input-bordered w-full h-[3.4rem]"
+          accept="image/*"
+          required
+          onChange={handleFileSelect}
+        />
+      </label>
     </>
   );
 
   const modalFooter = () => (
     <>
       <button
+        type="submit"
         className="btn btn-primary text-[1.3rem] mt-6"
-        onClick={() => handleSubmit(nameRef.current, fileRef.current)}
+        //onClick={() => handleSubmit(nameRef.current, fileRef.current)}
       >
         Upload
       </button>
     </>
   );
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    handleSubmit(nameRef.current, fileRef.current);
+  };
 
   return (
     <CustomModal
@@ -76,7 +85,8 @@ const UploadModal = ({ show, setShow, handleSubmit }) => {
       modalFooter={modalFooter}
       show={show}
       closeModal={closeModal}
-      width={'60rem'}
+      handleSubmit={handleFormSubmit}
+      width={"60rem"}
     />
   );
 };

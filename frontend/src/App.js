@@ -4,13 +4,17 @@ import Header from "./components/Header";
 import "./App.scss";
 import CertGallery from "./components/CertGallery";
 import CertList from "./components/CertList";
-import { setFilteredCerts } from "./shared/stateReducer";
+import { setFilteredCerts, setCertObject } from "./shared/stateReducer";
 import axios from "axios";
 import { THEME_DARK, THEME_LIGHT } from "./shared/constants";
+import Loader from "./shared/Loader";
+import { ToastContainer } from "react-toastify";
 
 function App() {
-  const [reloading, setReloading] = useState(false);
+  const [reloading, setReloading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const { theme } = useSelector((state) => {
     return state;
   });
@@ -19,13 +23,19 @@ function App() {
 
   useLayoutEffect(() => {
     try {
-      (async () => {
-        const certificates = await axios.get("/api/certificates", {
-          withCredentials: true,
-        });
-        setIsLoggedIn(certificates?.data?.isLoggedIn);
-        // dispatch(setFilteredCerts(certificates?.data))
-      })();
+      if(reloading){
+        (async () => {
+          const certificates = await axios.get("/api/certificates", {
+            withCredentials: true,
+          });
+          setIsLoggedIn(certificates?.data?.isLoggedIn);
+          const certArray = certificates?.data?.data;
+          dispatch(setFilteredCerts(certArray));
+          dispatch(setCertObject(certArray[0]));
+          setLoading(false);
+          setReloading(false);
+        })();
+      }
     } catch (error) {
       console.error("Unable to load certificates - ", error);
     }
@@ -44,9 +54,15 @@ function App() {
         </div>
       )}
       <div className="certwrap">
-        <CertGallery />
-        <CertList />
+        <Loader loading={loading} />
+        <CertGallery loading={loading} />
+        <CertList isLoggedIn={isLoggedIn} setReloading={setReloading} />
       </div>
+      <ToastContainer
+        hideProgressBar={true}
+        autoClose={3000}
+        toastClassName={`data-theme-${THEME_DARK}`}
+      />
     </main>
   );
 }

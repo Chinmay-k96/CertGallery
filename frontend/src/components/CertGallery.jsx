@@ -2,12 +2,11 @@ import React, {useState, useEffect } from 'react'
 import {useSelector} from 'react-redux'
 import { THEME_DARK, THEME_LIGHT } from '../shared/constants';
 
-const CertGallery = () => {
+const CertGallery = ({loading}) => {
 
   const [load, setLoad] = useState(false);
 
-  const { certImg, theme } = useSelector(state => state)
-  //console.log(certImg)
+  const { certObject, theme } = useSelector(state => state)
 
   useEffect(() => {
     setLoad(true);
@@ -15,13 +14,13 @@ const CertGallery = () => {
     setLoad(false);
     }, 0.5);
 
-  }, [certImg]);
+  }, [certObject]);
 
   if (load) return <></>;
 
   return (
     <section className='cert-gallery flex justify-center items-center' data-theme={`${theme ? THEME_LIGHT : THEME_DARK}`}>
-      <img src={`/certificates/${certImg}`} alt={`${certImg}`} className='img-cert shadow-[0_0_20px_0_rgba(24,54,100,.65)]'></img>
+      {!loading && certObject && <img src={certObject?.content} alt={`${certObject?.filename}`} className='img-cert shadow-[0_0_20px_0_rgba(24,54,100,.65)]'></img>}
     </section>
   )
 }

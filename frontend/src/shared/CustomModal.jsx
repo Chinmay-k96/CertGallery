@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { THEME_DARK } from "./constants";
 
@@ -9,23 +9,29 @@ const CustomModal = ({
   modalFooter,
   closeModal,
   show,
-  width
+  width,
+  handleSubmit
 }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
   useEffect(() => {
+    setIsVisible(true);
     document.body.style.overflowY = "hidden";
     return () => {
       document.body.style.overflowY = "scroll";
     };
-  }, []);
+  }, [show]);
 
   if (!show) return null; // Don't render the modal if not open
 
   return ReactDOM.createPortal(
     <div
-      className={`fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 transition-opacity duration-300`}
+      className={`fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50`}
     >
       <div
-        className={`w-[${width}] rounded-2xl shadow-lg p-8 relative`}
+        className={`w-[${width}] rounded-2xl shadow-lg p-8 relative ${
+          isVisible ? "fade-in" : "fade-out"
+        }`}
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
         data-theme={THEME_DARK}
       >
@@ -33,14 +39,18 @@ const CustomModal = ({
           <div className="font-bold text-[2rem]">{modalTitle}</div>
           <button
             className="btn btn-sm btn-circle btn-ghost text-[1.3rem]"
-            onClick={closeModal}
+            onClick={() => {
+              setIsVisible(false);
+              setTimeout(closeModal, 400);
+            }}
           >
             ✕
           </button>
         </div>
-
-        <div className="my-8">{modalBody()}</div>
-        <div className="modal-action">{modalFooter()}</div>
+        <form onSubmit={handleSubmit}>
+          <div className="my-8">{modalBody()}</div>
+          <div className="modal-action">{modalFooter()}</div>
+        </form>
       </div>
     </div>,
     document.querySelector(".myPortalModalDiv")

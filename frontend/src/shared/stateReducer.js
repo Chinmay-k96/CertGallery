@@ -1,7 +1,7 @@
-import { certArray } from "../shared/constants"
+//import { certArray } from "../shared/constants"
 
 export const SET_THEME = 'SET_THEME'
-export const SET_CERT_IMG = 'SET_CERT_IMG'
+export const SET_CERT_OBJECT = 'SET_CERT_OBJECT'
 export const SET_FILTERED_CERTS = 'SET_FILTERED_CERTS'
 
 export const setTheme = (data) =>({
@@ -9,8 +9,8 @@ export const setTheme = (data) =>({
     payload: data
 }) 
 
-export const setCertImg = (data) =>({
-    type : SET_CERT_IMG,
+export const setCertObject = (data) =>({
+    type : SET_CERT_OBJECT,
     payload: data
 })
 
@@ -21,8 +21,8 @@ export const setFilteredCerts = (data) =>({
 
 const initialState = {
     theme : true,
-    certImg: "peoples-choice.jpg",
-    filteredCerts: certArray,
+    certObject: {},
+    filteredCerts: [],
 }
 
 const stateReducer = (state = initialState, action) =>{
@@ -34,10 +34,10 @@ const stateReducer = (state = initialState, action) =>{
             };
         }
 
-        case SET_CERT_IMG:{
+        case SET_CERT_OBJECT:{
             return {
                 ...state,
-                certImg: action.payload
+                certObject: action.payload
             };
         }
 

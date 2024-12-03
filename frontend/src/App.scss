@@ -21,6 +21,16 @@ select:focus {
   height: auto;
 }
 
+.fade-in{
+  animation: zoom 1s;
+  animation: fadeInSecondary 500ms ease-out backwards;
+}
+
+.fade-out{
+  animation: zoom 1s;
+  animation: fadeOut 500ms ease-in backwards;
+}
+
 img:hover {
   cursor: pointer;
   transform: scale(1.01);
@@ -64,6 +74,10 @@ img:hover {
   margin-left: 0.5rem;
 }
 
+.Toastify__toast-body{
+  font-size: 1.5rem;
+}
+
 @keyframes fadeIn {
   from {
     transform: scale(0.1);
@@ -73,6 +87,30 @@ img:hover {
   to {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes fadeInSecondary {
+  from {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(0.8);
+    opacity: 0.5;
   }
 }
 
@@ -120,12 +158,13 @@ input:focus-visible {
 
 .certificate {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-align: left;
-  padding: 2.2rem;
+  padding: 1.6rem;
   padding-right: 3rem;
   font-size: 1.8rem;
   font-family: Georgia, serif;
-  cursor: pointer;
 }
 
 .dataResult {

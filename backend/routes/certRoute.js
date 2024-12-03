@@ -11,7 +11,7 @@ router.get(
     try {
       let { usertoken } = req.cookies;
       const isLoggedIn = verfiyToken(usertoken);
-      const certificates = await Certificate.find({});
+      const certificates = await Certificate.find({}).sort({ createdAt: -1 });
       res.json({ isLoggedIn: isLoggedIn, data: certificates });
     } catch (error) {
       res.status(500);
@@ -26,15 +26,8 @@ router.delete(
   authenticate,
   expressAsyncHandler(async (req, res) => {
     try {
-      const certificate = await Certificate.findById(req.params.id);
-
-      if (certificate) {
-        await certificate.remove();
-        res.json({ message: "Certificate deleted" });
-      } else {
-        res.status(404);
-        throw new Error("Certificate not found");
-      }
+      await Certificate.findOneAndDelete({ _id: req.params.id });
+      res.json({ message: "Certificate deleted" });
     } catch (error) {
       res.status(500);
       throw new Error("Somthing went wrong" + error);
@@ -48,7 +41,7 @@ router.patch(
   authenticate,
   expressAsyncHandler(async (req, res) => {
     try {
-      const certificate = await Certificate.findById(req.params.id);
+      const certificate = await Certificate.findById({ _id: req.params.id });
 
       if (certificate) {
         Object.keys(req?.body)?.map((key) => {
