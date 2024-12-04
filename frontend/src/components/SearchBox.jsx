@@ -15,7 +15,7 @@ const SearchBox = () => {
           return value?.filename?.toLowerCase().includes(wordEntered.toLowerCase());
         })
       : [];
-  }, [wordEntered]);
+  }, [wordEntered, filteredCerts]);
 
   const dispatch = useDispatch();
 

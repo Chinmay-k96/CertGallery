@@ -6,7 +6,7 @@ const CertGallery = ({loading}) => {
 
   const [load, setLoad] = useState(false);
 
-  const { certObject, theme } = useSelector(state => state)
+  const { certObject } = useSelector(state => state)
 
   useEffect(() => {
     setLoad(true);

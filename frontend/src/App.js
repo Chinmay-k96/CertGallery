@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Header from "./components/Header";
 import "./App.scss";
 import CertGallery from "./components/CertGallery";
@@ -14,10 +14,6 @@ function App() {
   const [reloading, setReloading] = useState(true);
   const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const { theme } = useSelector((state) => {
-    return state;
-  });
 
   const dispatch = useDispatch();
 
@@ -39,7 +35,7 @@ function App() {
     } catch (error) {
       console.error("Unable to load certificates - ", error);
     }
-  }, [reloading]);
+  }, [reloading, dispatch]);
 
   return (
     <main data-theme={THEME_DARK}>
