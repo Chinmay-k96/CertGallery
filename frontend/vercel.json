@@ -21,6 +21,10 @@
         "dest": "/static/$1"
       },
       {
+        "src": "/api/:path*",
+        "dest": "https://cert-gallery.vercel.app/api/:path*"
+      },
+      {
         "src": "/(.*)",
         "dest": "/index.html"
       }
