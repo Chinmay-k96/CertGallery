@@ -1,0 +1,277 @@
+@mixin app-main {
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+.cert-icon {
+  margin-right: 12px;
+}
+
+.img-cert {
+  animation: zoom 0.5s;
+  animation: fadeIn 700ms ease-out backwards;
+  width: 80%;
+  height: auto;
+}
+
+.fade-in {
+  animation: zoom 1s;
+  animation: fadeInSecondary 500ms ease-out backwards;
+}
+
+.fade-out {
+  animation: zoom 1s;
+  animation: fadeOut 500ms ease-in backwards;
+}
+
+img:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+  transition: transform 0.5s;
+}
+
+#cross {
+  cursor: pointer;
+}
+
+#glass,
+#cross {
+  font-size: 1.8rem;
+}
+
+.download-icon {
+  margin-left: auto;
+}
+
+#download {
+  text-align: right;
+  font-size: 1.5rem;
+}
+
+.dataResult::-webkit-scrollbar-thumb {
+  background: #3362a2;
+}
+
+.dataResult::-webkit-scrollbar {
+  width: 4px;
+}
+
+.certwrap {
+  display: flex;
+}
+
+.cert-gallery {
+  width: 64vw;
+  padding-top: 0.9rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInSecondary {
+  from {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+.head-right {
+  display: flex;
+  justify-content: space-between;
+  width: 61%;
+  padding: 1rem;
+}
+
+.heading {
+  font-size: 2.8rem;
+  font-family: Georgia, sans-serif;
+  padding: 1rem;
+  text-align: left;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 45%;
+}
+
+.searchbox {
+  display: flex;
+  padding: 1rem;
+  border-radius: 0.4rem;
+}
+
+input,
+input:focus-visible {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+}
+
+.certlist {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  height: 87vh;
+  overflow-y: auto;
+  margin-left: 0.5rem;
+}
+
+.certificate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  padding: 1.6rem;
+  padding-right: 3rem;
+  font-size: 1.8rem;
+  font-family: Georgia, serif;
+}
+
+.dataResult {
+  position: absolute;
+  margin-top: 0.5rem;
+  border-radius: 0.4rem;
+  max-height: 20rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.dataResult .dataItem {
+  width: 100%;
+  text-align: left;
+  font-size: 1.5rem;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  padding: 1.5rem;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+.warn {
+  background-color: rgb(150, 141, 7, 0.6);
+  color: rgb(235, 223, 55);
+  padding: 5px;
+  font-size: 1.5rem;
+  transition: transform 0.5s;
+}
+
+.menu li > *:not(ul, .menu-title, details, .btn):active,
+.menu li > *:not(ul, .menu-title, details, .btn).active,
+.menu li > details > summary:active {
+  --tw-bg-opacity: 1;
+  background-color: inherit;
+  --tw-text-opacity: 1;
+  color: inherit;
+}
+
+.Toastify__toast {
+  background-color: #e5e7eb;
+}
+
+.Toastify__toast-body {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--fallback-b2, oklch(var(--b2) / var(--tw-bg-opacity, 1)));
+}
+
+.Toastify__close-button--light {
+  color: var(--fallback-b2, oklch(var(--b2) / var(--tw-bg-opacity, 1)));
+  opacity: 0.6;
+}
+
+@media (max-width: 950px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 760px) {
+  html {
+    font-size: 7px;
+  }
+}
+
+@media (max-width: 670px) {
+  html {
+    font-size: 6px;
+  }
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 7px;
+  }
+  .header {
+    flex-direction: column;
+  }
+  .right-nav {
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1.3rem;
+  }
+
+  .head-right {
+    width: 95%;
+  }
+
+  .search-wrapper {
+    width: 65%;
+  }
+
+  .certwrap {
+    flex-direction: column;
+  }
+
+  .cert-gallery {
+    width: 98vw;
+  }
+
+  .img-cert {
+    width: 91%;
+    height: auto;
+  }
+
+  .certlist {
+    width: 100vw;
+    height: 50vh;
+  }
+}
