@@ -15,7 +15,7 @@ router.get(
       res.json({ isLoggedIn: isLoggedIn, data: certificates });
     } catch (error) {
       res.status(500);
-      throw new Error("Somthing went wrong - " + error);
+      throw new Error(error);
     }
   })
 );
@@ -30,7 +30,7 @@ router.delete(
       res.json({ message: "Certificate deleted" });
     } catch (error) {
       res.status(500);
-      throw new Error("Somthing went wrong" + error);
+      throw new Error(error);
     }
   })
 );
@@ -41,23 +41,11 @@ router.patch(
   authenticate,
   expressAsyncHandler(async (req, res) => {
     try {
-      const certificate = await Certificate.findById({ _id: req.params.id });
-
-      if (certificate) {
-        Object.keys(req?.body)?.map((key) => {
-          certificate[key] = req?.body?.[key];
-        });
-
-        const updatedCertificate = await certificate.save();
-
-        res.send(updatedCertificate);
-      } else {
-        res.status(404);
-        throw new Error("Certificate not found");
-      }
+      await Certificate.findByIdAndUpdate({ _id: req.params.id }, req?.body);
+      res.send("certificate updated");
     } catch (error) {
       res.status(500);
-      throw new Error("Somthing went wrong" + error);
+      throw new Error(error);
     }
   })
 );

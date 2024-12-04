@@ -4,10 +4,15 @@ import { setCertObject } from "../shared/stateReducer";
 import DeleteModal from "./Modals/deleteModal";
 import axios from "axios";
 import { toast } from "react-toastify";
+import UploadModal from "./Modals/uploadModal";
+import { downloadBase64File } from "../shared/utils";
 
 const CertList = ({ isLoggedIn, setReloading }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const certRef = useRef();
+  const [showUploadModal, setShowUploadModal] = useState(false);
+
+  const deleteCertRef = useRef();
+  const editCertRef = useRef();
 
   const { certObject, filteredCerts } = useSelector((state) => state);
 
@@ -15,16 +20,33 @@ const CertList = ({ isLoggedIn, setReloading }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/certificates/${certRef.current?._id}`, {
+      await axios.delete(`/api/certificates/${deleteCertRef.current?._id}`, {
         withCredentials: true,
       });
       setShowDeleteModal(false);
       setReloading(true);
-      toast("Certificate Deleted Successfully");
+      toast.success("Certificate Deleted Successfully");
     } catch (error) {
       console.error("Unable to delete - ", error);
       toast.error("Unable to delete certificate");
       setShowDeleteModal(false);
+    }
+  };
+
+  const handleEdit = async (editObject) => {
+    try {
+      await axios.patch(
+        `/api/certificates/${editCertRef.current?._id}`,
+        editObject,
+        { withCredentials: true }
+      );
+      setReloading(true);
+      setShowUploadModal(false);
+      toast.success("Certificate edited successfully");
+    } catch (error) {
+      console.error("Unable to edit - ", error);
+      toast.error("Unable to edit certificate");
+      setShowUploadModal(false);
     }
   };
 
@@ -53,13 +75,17 @@ const CertList = ({ isLoggedIn, setReloading }) => {
                       title="Edit Certificate"
                       id="editCert"
                       className="fa-solid fa-pencil mr-8 cursor-pointer"
+                      onClick={() => {
+                        editCertRef.current = c;
+                        setShowUploadModal(true);
+                      }}
                     ></i>
                     <i
                       title="Delete Certificate"
                       id="download"
                       className="fa-solid fa-trash mr-8 cursor-pointer"
                       onClick={() => {
-                        certRef.current = c;
+                        deleteCertRef.current = c;
                         setShowDeleteModal(true);
                       }}
                     ></i>
@@ -69,6 +95,7 @@ const CertList = ({ isLoggedIn, setReloading }) => {
                   title="Download Certificate"
                   id="download"
                   className="fa-solid fa-download cursor-pointer"
+                  onClick={()=> downloadBase64File(c?.content, c?.filename)}
                 ></i>
               </div>
             </div>
@@ -79,7 +106,13 @@ const CertList = ({ isLoggedIn, setReloading }) => {
         show={showDeleteModal}
         setShow={setShowDeleteModal}
         handleDelete={handleDelete}
-        fileName={certRef.current?.filename}
+        fileName={deleteCertRef.current?.filename}
+      />
+      <UploadModal
+        show={showUploadModal}
+        setShow={setShowUploadModal}
+        handleSubmit={handleEdit}
+        editRef={editCertRef.current}
       />
     </section>
   );

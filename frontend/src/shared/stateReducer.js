@@ -1,5 +1,3 @@
-//import { certArray } from "../shared/constants"
-
 export const SET_THEME = 'SET_THEME'
 export const SET_CERT_OBJECT = 'SET_CERT_OBJECT'
 export const SET_FILTERED_CERTS = 'SET_FILTERED_CERTS'
@@ -22,7 +20,7 @@ export const setFilteredCerts = (data) =>({
 const initialState = {
     theme : true,
     certObject: {},
-    filteredCerts: [],
+    filteredCerts: []
 }
 
 const stateReducer = (state = initialState, action) =>{

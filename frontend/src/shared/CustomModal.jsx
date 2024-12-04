@@ -16,10 +16,6 @@ const CustomModal = ({
 
   useEffect(() => {
     setIsVisible(true);
-    document.body.style.overflowY = "hidden";
-    return () => {
-      document.body.style.overflowY = "scroll";
-    };
   }, [show]);
 
   if (!show) return null; // Don't render the modal if not open

@@ -21,12 +21,12 @@ select:focus {
   height: auto;
 }
 
-.fade-in{
+.fade-in {
   animation: zoom 1s;
   animation: fadeInSecondary 500ms ease-out backwards;
 }
 
-.fade-out{
+.fade-out {
   animation: zoom 1s;
   animation: fadeOut 500ms ease-in backwards;
 }
@@ -68,14 +68,10 @@ img:hover {
 }
 
 .cert-gallery {
-  width: 66vw;
+  width: 64vw;
   padding-top: 0.9rem;
   margin-bottom: 0.5rem;
   margin-left: 0.5rem;
-}
-
-.Toastify__toast-body{
-  font-size: 1.5rem;
 }
 
 @keyframes fadeIn {
@@ -150,7 +146,7 @@ input:focus-visible {
 .certlist {
   display: flex;
   flex-direction: column;
-  width: 34vw;
+  width: 40vw;
   height: 87vh;
   overflow-y: auto;
   margin-left: 0.5rem;
@@ -198,6 +194,30 @@ input:focus-visible {
   transition: transform 0.5s;
 }
 
+.menu li > *:not(ul, .menu-title, details, .btn):active,
+.menu li > *:not(ul, .menu-title, details, .btn).active,
+.menu li > details > summary:active {
+  --tw-bg-opacity: 1;
+  background-color: inherit;
+  --tw-text-opacity: 1;
+  color: inherit;
+}
+
+.Toastify__toast {
+  background-color: #e5e7eb;
+}
+
+.Toastify__toast-body {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--fallback-b2, oklch(var(--b2) / var(--tw-bg-opacity, 1)));
+}
+
+.Toastify__close-button--light {
+  color: var(--fallback-b2, oklch(var(--b2) / var(--tw-bg-opacity, 1)));
+  opacity: 0.6;
+}
+
 @media (max-width: 950px) {
   html {
     font-size: 8px;
@@ -223,7 +243,7 @@ input:focus-visible {
   .header {
     flex-direction: column;
   }
-  .right-nav{
+  .right-nav {
     justify-content: space-between;
     width: 100%;
     margin-bottom: 1.3rem;

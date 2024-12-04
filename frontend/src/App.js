@@ -6,7 +6,7 @@ import CertGallery from "./components/CertGallery";
 import CertList from "./components/CertList";
 import { setFilteredCerts, setCertObject } from "./shared/stateReducer";
 import axios from "axios";
-import { THEME_DARK, THEME_LIGHT } from "./shared/constants";
+import { THEME_DARK } from "./shared/constants";
 import Loader from "./shared/Loader";
 import { ToastContainer } from "react-toastify";
 
@@ -42,7 +42,7 @@ function App() {
   }, [reloading]);
 
   return (
-    <main data-theme={`${theme ? THEME_DARK : THEME_LIGHT}`}>
+    <main data-theme={THEME_DARK}>
       <Header
         setReloading={setReloading}
         isLoggedIn={isLoggedIn}
@@ -60,7 +60,7 @@ function App() {
       </div>
       <ToastContainer
         hideProgressBar={true}
-        autoClose={3000}
+        autoClose={2000}
         toastClassName={`data-theme-${THEME_DARK}`}
       />
     </main>

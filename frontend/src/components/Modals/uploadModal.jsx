@@ -1,9 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import CustomModal from "../../shared/CustomModal";
 
-const UploadModal = ({ show, setShow, handleSubmit }) => {
-  const nameRef = useRef();
+const UploadModal = ({ show, setShow, handleSubmit, editRef }) => {
+  const [fileName, setFileName] = useState("");
   const fileRef = useRef();
+
+  let content = "";
+
+  useEffect(() => {
+    if (editRef) {
+      setFileName(editRef?.filename);
+    }else{
+      setFileName("")
+    }
+  }, [editRef]);
 
   function closeModal() {
     setShow(false);
@@ -11,7 +21,7 @@ const UploadModal = ({ show, setShow, handleSubmit }) => {
 
   const handleNameChange = (e) => {
     let name = e.target.value;
-    nameRef.current = name;
+    setFileName(name);
   };
 
   function convertImageToBase64(file) {
@@ -20,6 +30,9 @@ const UploadModal = ({ show, setShow, handleSubmit }) => {
       reader.readAsDataURL(file); // Read the file as a Data URL (Base64 encoded)
       reader.onload = function (e) {
         fileRef.current = e.target.result;
+        if (editRef) {
+          content = e.target.result;
+        }
         console.log("Base64 String:", e.target.result); // Log the Base64 string
       };
 
@@ -42,6 +55,7 @@ const UploadModal = ({ show, setShow, handleSubmit }) => {
       <label className="input input-bordered flex items-center gap-2 h-[3.5rem]">
         <input
           type="text"
+          value={fileName}
           className="grow text-xl/8 text-[1.5rem]"
           onChange={handleNameChange}
           placeholder="Enter certificate name"
@@ -54,7 +68,7 @@ const UploadModal = ({ show, setShow, handleSubmit }) => {
           type="file"
           className="file-input file-input-bordered w-full h-[3.4rem]"
           accept="image/*"
-          required
+          required={editRef ? false : true}
           onChange={handleFileSelect}
         />
       </label>
@@ -63,11 +77,7 @@ const UploadModal = ({ show, setShow, handleSubmit }) => {
 
   const modalFooter = () => (
     <>
-      <button
-        type="submit"
-        className="btn btn-primary text-[1.3rem] mt-6"
-        //onClick={() => handleSubmit(nameRef.current, fileRef.current)}
-      >
+      <button type="submit" className="btn btn-primary text-[1.3rem] mt-6">
         Upload
       </button>
     </>
@@ -75,7 +85,16 @@ const UploadModal = ({ show, setShow, handleSubmit }) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    handleSubmit(nameRef.current, fileRef.current);
+    if (editRef) {
+      let obj = {};
+      obj.filename = fileName;
+      if (content) {
+        obj.content = content;
+      }
+      handleSubmit(obj);
+    } else {
+      handleSubmit(fileName, fileRef.current);
+    }
   };
 
   return (
