@@ -20,8 +20,8 @@ function App() {
   axios.interceptors.request.use(
     (config) => {
       // Set the baseURL dynamically or statically
-      if (process.env.NODE_ENV !== "development") {
-        config.baseURL = process.env.BASE_URL;
+      if (process.env.REACT_APP_NODE_ENV !== "development") {
+        config.baseURL = process.env.REACT_APP_BASE_URL;
       }else{
         config.baseURL = "http://localhost:5000";
       }

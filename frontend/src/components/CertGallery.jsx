@@ -20,7 +20,7 @@ const CertGallery = ({loading}) => {
 
   return (
     <section className='cert-gallery flex justify-center items-center' data-theme={THEME_ALTERNATE}>
-      {!loading && certObject && <img src={certObject?.content} alt={`${certObject?.filename}`} className='img-cert shadow-[0_0_20px_0_rgba(24,54,100,.65)]'></img>}
+      {!loading && Object.keys(certObject)?.length && <img src={certObject?.content} alt={`${certObject?.filename}`} className='img-cert shadow-[0_0_20px_0_rgba(24,54,100,.65)]'></img>}
     </section>
   )
 }
