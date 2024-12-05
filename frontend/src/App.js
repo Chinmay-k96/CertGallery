@@ -17,6 +17,18 @@ function App() {
 
   const dispatch = useDispatch();
 
+  axios.interceptors.request.use(
+    (config) => {
+      // Set the baseURL dynamically or statically
+      process.env.NODE_ENV !== "development" ? config.baseURL = process.env.BASE_URL : "";
+      return config; // Always return the config object
+    },
+    (error) => {
+      // Handle request errors
+      return Promise.reject(error);
+    }
+  );
+
   useLayoutEffect(() => {
     try {
       if(reloading){
@@ -26,14 +38,17 @@ function App() {
           });
           setIsLoggedIn(certificates?.data?.isLoggedIn);
           const certArray = certificates?.data?.data;
-          dispatch(setFilteredCerts(certArray));
-          dispatch(setCertObject(certArray[0]));
+          if(Array.isArray(certArray)){
+            dispatch(setFilteredCerts(certArray));
+            dispatch(setCertObject(certArray[0]));
+          }
           setLoading(false);
           setReloading(false);
         })();
       }
     } catch (error) {
       console.error("Unable to load certificates - ", error);
+      setLoading(false);
     }
   }, [reloading, dispatch]);
 
