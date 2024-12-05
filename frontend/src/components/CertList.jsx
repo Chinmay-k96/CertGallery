@@ -52,7 +52,7 @@ const CertList = ({ isLoggedIn, setReloading }) => {
 
   return (
     <section className="certlist">
-      {filteredCerts.map((c, i) => {
+      {filteredCerts && Array.isArray(filteredCerts) && filteredCerts.map((c, i) => {
         return (
           <Fragment>
             <div key={i} className="divider m-0"></div>
