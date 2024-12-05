@@ -1,54 +1,22 @@
-export const SET_THEME = 'SET_THEME'
-export const SET_CERT_OBJECT = 'SET_CERT_OBJECT'
-export const SET_FILTERED_CERTS = 'SET_FILTERED_CERTS'
-
-export const setTheme = (data) =>({
-    type : SET_THEME,
-    payload: data
-}) 
-
-export const setCertObject = (data) =>({
-    type : SET_CERT_OBJECT,
-    payload: data
-})
-
-export const setFilteredCerts = (data) =>({
-    type : SET_FILTERED_CERTS,
-    payload: data
-})
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    theme : true,
     certObject: {},
     filteredCerts: []
 }
 
-const stateReducer = (state = initialState, action) =>{
-    switch (action.type) {
-        case SET_THEME:{
-            return {
-                ...state,
-                theme: !state.theme
-            };
-        }
+const certSlice = createSlice({
+  name: 'cert',
+  initialState: initialState,
+  reducers: {
+    setCertObject(state, action) {
+      return { ...state, certObject: action.payload };
+    },
+    setFilteredCerts(state, action) {
+      return { ...state, filteredCerts: action.payload };
+    },
+  },
+});
 
-        case SET_CERT_OBJECT:{
-            return {
-                ...state,
-                certObject: action.payload
-            };
-        }
-
-        case SET_FILTERED_CERTS:{
-            return {
-                ...state,
-                filteredCerts: action.payload
-            };
-        }
-
-        default:
-            return state;
-    }
-}
-
-export default stateReducer;
+export const { setCertObject, setFilteredCerts } = certSlice.actions;
+export default certSlice.reducer;

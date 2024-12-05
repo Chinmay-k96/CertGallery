@@ -20,7 +20,11 @@ function App() {
   axios.interceptors.request.use(
     (config) => {
       // Set the baseURL dynamically or statically
-      process.env.NODE_ENV !== "development" ? config.baseURL = process.env.BASE_URL : "";
+      if (process.env.NODE_ENV !== "development") {
+        config.baseURL = process.env.BASE_URL;
+      }else{
+        config.baseURL = "http://localhost:5000";
+      }
       return config; // Always return the config object
     },
     (error) => {
@@ -31,14 +35,14 @@ function App() {
 
   useLayoutEffect(() => {
     try {
-      if(reloading){
+      if (reloading) {
         (async () => {
           const certificates = await axios.get("/api/certificates", {
             withCredentials: true,
           });
           setIsLoggedIn(certificates?.data?.isLoggedIn);
           const certArray = certificates?.data?.data;
-          if(Array.isArray(certArray)){
+          if (Array.isArray(certArray)) {
             dispatch(setFilteredCerts(certArray));
             dispatch(setCertObject(certArray[0]));
           }

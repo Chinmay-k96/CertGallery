@@ -86,7 +86,7 @@ const Header = ({ setReloading, isLoggedIn, setIsLoggedIn }) => {
                 onClick={() => setShowUploadModal(true)}
               >
                 <div className="flex justify-between items-center text-[1.4rem]">
-                  <i class="fa-solid fa-upload"></i>Add Certificate
+                  <i className="fa-solid fa-upload"></i>Add Certificate
                 </div>
               </li>
               <li
@@ -94,7 +94,7 @@ const Header = ({ setReloading, isLoggedIn, setIsLoggedIn }) => {
                 onClick={onLoginOut}
               >
                 <div className="flex justify-between items-center text-[1.4rem]">
-                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <i className="fa-solid fa-right-from-bracket"></i>
                   {isLoggedIn ? "Logout" : "Login"}
                 </div>
               </li>

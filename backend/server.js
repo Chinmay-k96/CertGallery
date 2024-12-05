@@ -17,12 +17,10 @@ connectDB()
     try {
       const app = express();
 
-      app.use(
-        cors({
-          origin: "http://localhost:3000/",
-          credentials: true,
-        })
-      );
+      app.use(cors({
+        origin: process.env.ALLOWED_ORIGIN,
+        credentials: true
+      }));
       app.use(bodyParser.json({ limit: "50mb" }));
       app.use(cookieParser());
 

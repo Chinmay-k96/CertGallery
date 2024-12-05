@@ -7,7 +7,7 @@ const SearchBox = () => {
   const [inputValue, setInputValue] = useState("");
   const [wordEntered, setWordEntered] = useState("");
 
-  const { filteredCerts } = useSelector((state) => state);
+  const { filteredCerts } = useSelector(store => store.cert);
 
   const filteredData = useMemo(() => {
     return wordEntered

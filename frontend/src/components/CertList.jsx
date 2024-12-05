@@ -14,7 +14,7 @@ const CertList = ({ isLoggedIn, setReloading }) => {
   const deleteCertRef = useRef();
   const editCertRef = useRef();
 
-  const { certObject, filteredCerts } = useSelector((state) => state);
+  const { certObject, filteredCerts } = useSelector(store => store.cert);
 
   const dispatch = useDispatch();
 
@@ -54,10 +54,10 @@ const CertList = ({ isLoggedIn, setReloading }) => {
     <section className="certlist">
       {filteredCerts && Array.isArray(filteredCerts) && filteredCerts.map((c, i) => {
         return (
-          <Fragment>
-            <div key={i} className="divider m-0"></div>
+          <Fragment key={`${c?.filename}-1`}>
+            <div key={`${c?.filename}-2`} className="divider m-0"></div>
             <div
-              key={c?.filename}
+              key={`${c?.filename}-3`}
               className={`certificate hover:bg-base-200 ${
                 certObject?.filename === c?.filename ? "bg-base-200" : ""
               }`}
