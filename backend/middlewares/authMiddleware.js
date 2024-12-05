@@ -11,7 +11,7 @@ export const verfiyToken = (token) => {
 
 export const authenticate = (req, res, next) => {
   let { usertoken } = req.cookies;
-
+  console.log("usertoken - ", usertoken)
   if (usertoken) {
     try {
       if (!verfiyToken(usertoken)) {
