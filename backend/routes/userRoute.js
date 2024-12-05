@@ -5,7 +5,8 @@ import generateToken from "../utils/generateToken.js";
 //login  - public
 router.post("/login", (req, res) => {
   const { mpin } = req.body;
-
+  console.log("mpin", mpin)
+  console.log("USER_PIN", process.env.USER_PIN)
   if (Number(mpin) === Number(process.env.USER_PIN)) {
     const token = generateToken(mpin);
     res.cookie("usertoken", token);
