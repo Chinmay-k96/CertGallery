@@ -14,6 +14,8 @@ router.post("/login", (req, res) => {
       secure: true,       // Ensures the cookie is sent over HTTPS
       sameSite: "None",   // Required for cross-origin cookies
     });
+    res.header('Access-Control-Allow-Origin', process.env.ALLOWED_ORIGIN);
+    res.header('Access-Control-Allow-Credentials', 'true');
     res.send("Login successfull");
   } else {
     res.status(401);
