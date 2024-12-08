@@ -13,6 +13,7 @@ router.post("/login", (req, res) => {
       httpOnly: false,     // Makes the cookie inaccessible via JavaScript
       secure: true,       // Ensures the cookie is sent over HTTPS
       sameSite: "None",   // Required for cross-origin cookies
+      maxAge: 1000 * 60 * 60 * 24 * 2
     });
     res.header('Access-Control-Allow-Origin', process.env.ALLOWED_ORIGIN);
     res.header('Access-Control-Allow-Credentials', 'true');
