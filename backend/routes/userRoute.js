@@ -15,7 +15,7 @@ router.post("/login", (req, res) => {
       sameSite: "None",   // Required for cross-origin cookies
       maxAge: 1000 * 60 * 60 * 24 * 2,
       path: "/api",
-      domain: process.env.ALLOWED_ORIGIN
+      domain: process.env.ALLOWED_DOMAIN
     });
     res.header('Access-Control-Allow-Origin', process.env.ALLOWED_ORIGIN);
     res.header('Access-Control-Allow-Credentials', 'true');
