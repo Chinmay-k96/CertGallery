@@ -16,7 +16,7 @@ const LoginModal = ({ show, setShow, handleLogin }) => {
   const modalBody = () => (
     <>
       <div className="mb-6 text-[1.3rem]">Enter your MPIN</div>
-      <label className="input input-bordered flex items-center gap-2 h-[4rem]">
+      <label className="input input-bordered flex items-center gap-2 h-[4rem] mb-4">
         <input
           type="text"
           className="grow text-xl/8 text-[1.5rem]"
@@ -25,6 +25,7 @@ const LoginModal = ({ show, setShow, handleLogin }) => {
           required
         />
       </label>
+      <span className="disclaimer">MPIN unknown ? Contact admin for MPIN</span>
     </>
   );
 
