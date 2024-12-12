@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Header from "./components/Header";
 import "./App.scss";
 import CertGallery from "./components/CertGallery";
@@ -16,7 +16,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const dispatch = useDispatch();
-  const { token } = useSelector(store => store.cert)
+  const token = sessionStorage.getItem('usertoken')
 
   axios.interceptors.request.use(
     (config) => {

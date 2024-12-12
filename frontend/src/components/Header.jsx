@@ -6,8 +6,6 @@ import axios from "axios";
 import { THEME_ALTERNATE } from "../shared/constants";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch } from "react-redux";
-import { setToken } from "../shared/stateReducer";
 
 function deleteCookie(name) {
   document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -17,12 +15,10 @@ const Header = ({ setReloading, isLoggedIn, setIsLoggedIn }) => {
   const [showLogginModal, setShowLogginModal] = useState(false);
   const [showUploadModal, setShowUploadModal] = useState(false);
 
-  const dispatch = useDispatch()
-
   const handleLogin = async (pin) => {
     try {
       const res = await axios.post("/api/user/login", { mpin: pin });
-      dispatch(setToken(res?.data?.token))
+      sessionStorage.setItem('usertoken',res?.data?.token)
       setIsLoggedIn(true);
       setShowLogginModal(false);
       toast.success("Login Successfull");
