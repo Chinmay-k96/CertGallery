@@ -1,20 +1,24 @@
 import jwt from "jsonwebtoken";
 
-export const verfiyToken = (token) => {
+export const verfiyToken = (tokenString, origin) => {
   try {
-    jwt.verify(token, process.env.JWT_SECRET);
-    return true;
+    const token = tokenString?.split(' ')?.[1]
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if(decoded?.origin === origin){
+      return true;
+    }else{
+      return false
+    }
   } catch (error) {
     return false;
   }
 };
 
 export const authenticate = (req, res, next) => {
-  let { usertoken } = req.cookies;
-  console.log("usertoken - ", usertoken)
-  if (usertoken) {
+  const { authorization, origin } = req.headers;
+  if (authorization) {
     try {
-      if (!verfiyToken(usertoken)) {
+      if (!verfiyToken(authorization, origin)) {
         throw new Error("Invalid Token");
       }
       next();

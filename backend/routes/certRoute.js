@@ -9,8 +9,8 @@ router.get(
   "/",
   expressAsyncHandler(async (req, res) => {
     try {
-      let { usertoken } = req.cookies;
-      const isLoggedIn = verfiyToken(usertoken);
+      const { authorization, origin } = req.headers;
+      const isLoggedIn = verfiyToken(authorization, origin);
       const certificates = await Certificate.find({}).sort({ createdAt: -1 });
       res.json({ isLoggedIn: isLoggedIn, data: certificates });
     } catch (error) {

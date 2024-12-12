@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "./components/Header";
 import "./App.scss";
 import CertGallery from "./components/CertGallery";
@@ -16,12 +16,16 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const dispatch = useDispatch();
+  const { token } = useSelector(store => store.cert)
 
   axios.interceptors.request.use(
     (config) => {
       // Set the baseURL dynamically or statically
       if (process.env.REACT_APP_NODE_ENV !== "development") {
         config.baseURL = process.env.REACT_APP_BASE_URL;
+        if(token){
+          config.headers['Authorization'] = `Bearer ${token}`
+        }
       }else{
         config.baseURL = "http://localhost:5000";
       }

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    token: "",
     certObject: {},
     filteredCerts: []
 }
@@ -9,6 +10,9 @@ const certSlice = createSlice({
   name: 'cert',
   initialState: initialState,
   reducers: {
+    setToken(state, action) {
+      return { ...state, token: action.payload };
+    },
     setCertObject(state, action) {
       return { ...state, certObject: action.payload };
     },
@@ -18,5 +22,5 @@ const certSlice = createSlice({
   },
 });
 
-export const { setCertObject, setFilteredCerts } = certSlice.actions;
+export const { setCertObject, setFilteredCerts, setToken } = certSlice.actions;
 export default certSlice.reducer;

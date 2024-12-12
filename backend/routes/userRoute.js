@@ -5,24 +5,14 @@ import generateToken from "../utils/generateToken.js";
 //login  - public
 router.post("/login", (req, res) => {
   const { mpin } = req.body;
-  console.log("mpin", mpin)
-  console.log("USER_PIN", process.env.USER_PIN)
   if (Number(mpin) === Number(process.env.USER_PIN)) {
-    const token = generateToken(mpin);
-    res.cookie("usertoken", token, {
-      httpOnly: false,     // Makes the cookie inaccessible via JavaScript
-      secure: true,       // Ensures the cookie is sent over HTTPS
-      sameSite: "None",   // Required for cross-origin cookies
-      maxAge: 1000 * 60 * 60 * 24 * 2,
-      path: "/api",
-      domain: process.env.ALLOWED_DOMAIN
-    });
+    const token = generateToken();
     res.header('Access-Control-Allow-Origin', process.env.ALLOWED_ORIGIN);
     res.header('Access-Control-Allow-Credentials', 'true');
-    res.send("Login successfull");
+    res.json({message:"Login successfull", token:token});
   } else {
     res.status(401);
-    throw new Error("Invalid Pin");
+    throw new Error("Invalid Credentials");
   }
 });
 
