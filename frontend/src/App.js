@@ -16,17 +16,17 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const dispatch = useDispatch();
-  const token = sessionStorage.getItem('usertoken')
+  const token = sessionStorage.getItem("usertoken");
 
   axios.interceptors.request.use(
     (config) => {
       // Set the baseURL dynamically or statically
       if (process.env.REACT_APP_NODE_ENV !== "development") {
         config.baseURL = process.env.REACT_APP_BASE_URL;
-        if(token){
-          config.headers['Authorization'] = `Bearer ${token}`
+        if (token) {
+          config.headers["Authorization"] = `Bearer ${token}`;
         }
-      }else{
+      } else {
         config.baseURL = "http://localhost:5000";
       }
       return config; // Always return the config object
@@ -38,9 +38,9 @@ function App() {
   );
 
   useLayoutEffect(() => {
-    try {
-      if (reloading) {
-        (async () => {
+    if (reloading) {
+      (async () => {
+        try {
           const certificates = await axios.get("/api/certificates", {
             withCredentials: true,
           });
@@ -52,11 +52,11 @@ function App() {
           }
           setLoading(false);
           setReloading(false);
-        })();
-      }
-    } catch (error) {
-      console.error("Unable to load certificates - ", error);
-      setLoading(false);
+        } catch (error) {
+          console.error("Unable to load certificates - ", error);
+          setLoading(false);
+        }
+      })();
     }
   }, [reloading, dispatch]);
 
