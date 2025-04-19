@@ -18,7 +18,17 @@ connectDB()
       
       app.set('trust proxy', true);
       app.use(cors({
-        origin: process.env.ALLOWED_ORIGIN,
+        origin: function (origin, callback) {
+          const localhostRegex = /^http:\/\/localhost:\d+$/;
+          const allowedOrigins = process.env.ALLOWED_ORIGIN?.split(",")
+          // Allow requests with no origin (like mobile apps, curl, postman)
+          if (!origin) return callback(null, true);
+          if (allowedOrigins.includes(origin) || localhostRegex.test(origin)) {
+            return callback(null, true);
+          } else {
+            return callback(new Error("Not allowed by CORS"));
+          }
+        },
         credentials: true
       }));
       app.use(cookieParser());
