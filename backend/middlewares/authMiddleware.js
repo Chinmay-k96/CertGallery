@@ -4,6 +4,8 @@ export const verfiyToken = (tokenString, origin) => {
   try {
     const token = tokenString?.split(' ')?.[1]
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("origin from headers = ", origin)
+    console.log("origin decoded from jwt = ", decoded)
     if(decoded?.origin === origin){
       return true;
     }else{
