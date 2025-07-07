@@ -14,7 +14,7 @@ router.post("/login", (req, res) => {
     res.header("Access-Control-Allow-Credentials", "true");
   }
   if (Number(mpin) === Number(process.env.USER_PIN)) {
-    const token = generateToken();
+    const token = generateToken(origin);
     res.json({message:"Login successfull", token:token});
   } else {
     res.status(401);

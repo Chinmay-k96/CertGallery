@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const generateToken = () => {
-  const origin = process.env.ALLOWED_ORIGIN;
+const generateToken = (origin) => {
   return jwt.sign({ origin }, process.env.JWT_SECRET, { expiresIn: '1d' });
 };
 
