@@ -15,9 +15,7 @@ connectDB()
   .then(() => {
     try {
       const app = express();
-      
-      app.set('trust proxy', true);
-      app.use(cors({
+      const corsOptions = {
         origin: function (origin, callback) {
           const localhostRegex = /^http:\/\/localhost:\d+$/;
           const allowedOrigins = process.env.ALLOWED_ORIGIN?.split(",")
@@ -31,9 +29,12 @@ connectDB()
         },
         credentials: true,
         allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
-      }));
+      }
 
-      app.options("*", cors());
+      app.set('trust proxy', true);
+      app.use(cors(corsOptions));
+
+      app.options("*", cors(corsOptions));
       app.use(cookieParser());
       app.use(bodyParser.json({ limit: "50mb" }));
 
