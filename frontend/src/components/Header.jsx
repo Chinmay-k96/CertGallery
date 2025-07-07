@@ -17,7 +17,12 @@ const Header = ({ setReloading, isLoggedIn, setIsLoggedIn }) => {
 
   const handleLogin = async (pin) => {
     try {
-      const res = await axios.post("/api/user/login", { mpin: pin });
+      const res = await axios.post("/api/user/login", { mpin: pin }, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       sessionStorage.setItem('usertoken',res?.data?.token)
       setIsLoggedIn(true);
       setShowLogginModal(false);
