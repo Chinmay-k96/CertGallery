@@ -29,8 +29,11 @@ connectDB()
             return callback(new Error("Not allowed by CORS"));
           }
         },
-        credentials: true
+        credentials: true,
+        allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
       }));
+
+      app.options("*", cors());
       app.use(cookieParser());
       app.use(bodyParser.json({ limit: "50mb" }));
 
